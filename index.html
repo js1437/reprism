@@ -527,7 +527,8 @@ function ReframeGame() {
         {turns.slice(0, dialogueIdx).map((turn, tIdx) => {
           const tAgent = getAgentName(turn);
           const prevA = tIdx > 0 ? getAgentName(turns[tIdx - 1]) : rpData.agentName;
-          const showEntry = tAgent !== prevA;
+          const is2Check = isAgent2(turn);
+          const showEntry = tAgent !== prevA && is2Check;
           const is2 = isAgent2(turn);
           const aColor = is2 ? agent2Color : accent;
           return (
@@ -553,7 +554,8 @@ function ReframeGame() {
         {!allDone && currentTurn && (() => {
           const tAgent = getAgentName(currentTurn);
           const prevA = dialogueIdx > 0 ? getAgentName(turns[dialogueIdx - 1]) : rpData.agentName;
-          const showEntry = tAgent !== prevA;
+          const is2Check = isAgent2(currentTurn);
+          const showEntry = tAgent !== prevA && is2Check;
           const is2 = isAgent2(currentTurn);
           const aColor = is2 ? agent2Color : accent;
           const responseText = currentTurn.options ? currentTurn.options[0] : null;
